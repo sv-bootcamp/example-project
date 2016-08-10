@@ -21,14 +21,14 @@ gulp.task('build', function() {
 
 gulp.task('startserver', function() {
     return connect.server({
-      port: 80,
+      port: 8080,
       root: './src/client/',
       fallback: 'index.html'
     });
 });
 
 gulp.task('openbrowser', function() {
-    return opn('https://stark-shelf-48078.herokuapp.com');
+    return opn('https://stark-shelf-48078.herokuapp.com:8080');
 });
 
 gulp.task('default', function() {
