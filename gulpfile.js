@@ -28,7 +28,7 @@ gulp.task('startserver', function() {
 });
 
 gulp.task('openbrowser', function() {
-    return opn('stark-shelf-48078.herokuapp.com');
+    return opn('http://stark-shelf-48078.herokuapp.com:80');
 });
 
 gulp.task('default', function() {
