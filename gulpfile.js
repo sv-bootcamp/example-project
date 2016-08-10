@@ -21,7 +21,7 @@ gulp.task('build', function() {
 
 gulp.task('startserver', function() {
     return connect.server({
-      port: 3000,
+      port: 80,
       root: './src/client/',
       fallback: 'index.html'
     });
