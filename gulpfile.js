@@ -9,8 +9,8 @@ var opn = require('opn');
 
 gulp.task('build', function() {
    return browserify({
-      entries: 'src/client/Main.jsx',
-      extensions: ['.jsx'],
+      entries: 'src/client/Main.js',
+      extensions: ['.js'],
       debug: true
    })
    .transform(babelify)
