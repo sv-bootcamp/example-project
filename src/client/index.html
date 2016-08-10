@@ -7,6 +7,13 @@
    <div id="fb-root"></div>
    <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
 	<script>
+	window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '285492325147485',
+	      xfbml      : true,
+	      version    : 'v2.7'
+    	});
+  	};
 	(function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}

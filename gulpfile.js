@@ -22,7 +22,7 @@ gulp.task('build', function() {
 gulp.task('startserver', function() {
     return connect.server({
       port: 3000,
-      root: './client/',
+      root: './src/client/',
       fallback: 'index.html'
     });
 });
