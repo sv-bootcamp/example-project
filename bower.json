@@ -1,0 +1,17 @@
+{
+  "name": "example-project",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Patrick"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/sv-bootcamp/example-project",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
