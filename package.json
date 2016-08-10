@@ -1,0 +1,26 @@
+{
+  "name": "facebook-login",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "test",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sv-bootcamp/example-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sv-bootcamp/example-project/issues"
+  },
+  "homepage": "https://github.com/sv-bootcamp/example-project#readme",
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "express": "^4.14.0",
+    "pug": "^2.0.0-beta5"
+  }
+}
