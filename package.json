@@ -1,0 +1,29 @@
+{
+  "name": "sv",
+  "version": "1.0.0",
+  "description": "sv",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.11.4",
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "eventemitter": "^0.3.3",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-jasmine": "^2.4.0",
+    "opn": "^4.0.2",
+    "react": "^15.3.0",
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0",
+    "run-sequence": "^1.2.2",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
