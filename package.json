@@ -4,7 +4,8 @@
   "description": "sv",
   "main": "index.js",
   "scripts": {
-    
+    "build": "gulp",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
