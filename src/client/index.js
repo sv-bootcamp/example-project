@@ -16,7 +16,7 @@ function dispatchCount(num, username) {
 
 function render() {	
   ReactDOM.render(
-  	<h1>{store.getState()}</h1>
+  	<h1>You have visited {store.getState()} time(s) today</h1>
     ,
     rootEl  
   )
@@ -96,7 +96,7 @@ FB.api('/me', function(response) {
   localStorage.setItem('count', count);
   
   document.getElementById('status').innerHTML =
-    'Thanks for logging in, ' + response.name + '!';
+    'Hello ' + response.name + '! ';
 
   // document.getElementById('root').innerHTML = count;
   dispatchCount(count, username);
