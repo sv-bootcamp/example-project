@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+
+<head><h3>My Profile</h3></head>
+
+<section>
+<td>Hello, </td>
+<%= user.name %>
+</section>
+
+<section>
+<td>My e-mail is </td>
+<%= user.email %>
+</section>
+
+<section>
+<td>My token is </td>
+<%= user.token %>
+</section>
+
+<section>
+<head><h4>Profile picture</h4></head>
+<img src="<%= user.picture %>"></img>
+</section>
+
+<section>
+<td>You have visited </td>
+<%= user.count++ %>
+<td>times today. </td>
+</section>
+
+
+
+</div>
+
+</body>
+</html>
