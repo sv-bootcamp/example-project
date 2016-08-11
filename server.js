@@ -2,7 +2,6 @@ var webpack = require('webpack')
 // var webpackDevMiddleware = require('webpack-dev-middleware')
 // var webpackHotMiddleware = require('webpack-hot-middleware')
 var bodyParser = require("body-parser")
-var config = require('./webpack.config')
 var request = require('request')
 var http = require('http')
 var ejs = require('ejs')
@@ -21,7 +20,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", function (req, res) {
-	res.sendFile(__dirname + '/index.html')
+	res.sendFile(__dirname + '/src/index.html')
+})
+app.get("/welcome", function (req, res) {
+	res.redirect('/');
 })
 
 
@@ -57,38 +59,11 @@ app.post('/welcome', function (req, res) {
 			res.send( "Hello,"+ userData.name+", <br>" + "You have visited "+ visitData[userData.id] +" times today.");
 		}
 	}
-
 	request(options, callback);
 
 })
 //-----end of POST /FBAT
 
-
-// //for save visit count data
-// //params : userID
-// app.post('/get', function (req, res) {
-//
-// 	console.log(req.body);
-// 	var accessToken = req.body.accessToken;
-// 	var userID = req.body.userID;
-// 	var options = {
-// 		url: 'https://graph.facebook.com/' + userID + '?access_token=' + accessToken,
-// 		headers: {
-// 			'User-Agent': 'request'
-// 		}
-// 	};
-// 	function callback(error, response, body) {
-// 		if (!error && response.statusCode == 200) {
-// 			console.log(JSON.parse(body).name);
-// 			 res.redirect("http://localhost:3000/welcome");
-// 			 res.end();
-// 		}
-// 	}
-//
-// 	request(options, callback);
-//
-// })
-//------end of POST /save
 
 //start server
 app.listen(port, function (error) {
