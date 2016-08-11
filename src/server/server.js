@@ -1,23 +1,25 @@
-var express = require('express');
-var path = require('path');
-var session = require('express-session'); 
-var passport = require('passport');
-var FacebookPassport = require('passport-facebook').Strategy;
-
+import express from 'express';
+import path from 'path';
+import session from 'express-session'; 
+import bodyParser from 'body-parser';
+import passport from 'passport';
+import fbPassport from 'passport-facebook';
 import UserController from './controllers/user';
+import AuthFacebook from './routes/auth-facebook';
 
-console.log('user controller');
-console.log(UserController);
+const FacebookPassport = fbPassport.Strategy;
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, './../src/client/views'));
 app.set('view engine', 'ejs');
 
+app.use(bodyParser());
 app.use(session({secret:'facebooklogin'}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/auth/facebook', AuthFacebook);
 
 app.listen(3000, function(){
 	console.log('listening on port 3000');
@@ -27,38 +29,7 @@ app.get('/',function(req,res){
 	res.render('auth-facebook');
 });
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',
-	passport.authenticate('facebook', {
-		successRedirect : '/login_success',
-		failureRedirect : 'login_fail'
-	})
-);
 
-app.get('/login_success', function(req, res){
-
-	var userController = new UserController();
-	userController.updateCount(req.user.id);
-
-	const count = userController.getCount(req.user.id);
-
-	var user = {
-		displayName : req.user.displayName,
-		count : count,
-	};
-
-	res.render('login-success',user);
-
-});
-
-app.get('/auth/facebook/logout', function(req, res){
-	req.logout();
-	res.redirect('/');
-});
-
-
-// serialize
-// 인증후 사용자 정보를 세션에 저장
 passport.serializeUser(function(user,done){
 	console.log('serialize');
 	done(null, user);
@@ -73,7 +44,6 @@ passport.deserializeUser(function(user, done){
 
 });
 
-
 passport.use(new FacebookPassport({
 	clientID:'167822290307876',
 	clientSecret : '9025f9ac6d19800dae45c13608ffc1a9',
@@ -82,6 +52,7 @@ passport.use(new FacebookPassport({
 
 	done(null, profile);
 }));
+
 
 function ensureAuthenticated(req, res, next){
 	// if already login
