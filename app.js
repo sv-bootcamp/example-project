@@ -52,9 +52,12 @@ passport.use(new FacebookStrategy({
 ));
 
 var app = express();
-var _globalCount = 0;
-var _globalName = '';
+let _globalCount = 0;
+let _globalName = '';
 
+/**
+ * Rest API for get the user information...
+ */
 app.get('/getInfo', function (req, res) {
     https.get({
         host: 'graph.facebook.com',
