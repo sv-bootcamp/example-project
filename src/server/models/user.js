@@ -2,6 +2,7 @@
 
 let instance = null;
 
+// singleton
 class User{
 
 	constructor() {
@@ -16,7 +17,7 @@ class User{
 	getById(userId) {
 		return this.users[userId];
 	}
-	
+
 	updateById(userId) {
 		
 		if(this.users[userId]) this.users[userId] = 0;
