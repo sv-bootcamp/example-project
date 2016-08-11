@@ -28,6 +28,7 @@ store.subscribe(render)
 
 //facebook api
 function statusChangeCallback(response) {
+
 console.log('statusChangeCallback');
 console.log(response);
 // The response object is returned with a status field that lets the
@@ -46,7 +47,8 @@ if (response.status === 'connected') {
   // The person is not logged into Facebook, so we're not sure if
   // they are logged into this app or not.
   document.getElementById('status').innerHTML = 'Please log ' +
-    'into Facebook.';
+    'into Facebook.';    
+  localStorage.setItem('count', 0);
 }
 }
 
