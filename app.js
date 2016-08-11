@@ -43,7 +43,15 @@ passport.use(new FacebookStrategy({
             response.on('end', function(  ) {
                 // Data reception is done, do whatever with it!
                 var parsed = JSON.parse(body);
-                _globalName = parsed.name;
+
+                if( map.has( parsed.name )) {
+                    let previousValue = map.get( parsed.name );
+                    let newValue = previousValue + 1;
+                    map.set( parsed.name, newValue );
+                } else {
+                    map.set( parsed.name, 0);
+                }
+                _globalCurrentName = parsed.name;
 
                 done(null,profile);
             });
@@ -52,8 +60,9 @@ passport.use(new FacebookStrategy({
 ));
 
 var app = express();
-let _globalCount = 0;
-let _globalName = '';
+
+let _globalCurrentName = '';
+let map = new Map( );
 
 /**
  * Rest API for get the user information...
@@ -72,7 +81,7 @@ app.get('/getInfo', function (req, res) {
 
             res.send({
                 name: parsed.name,
-                count: _globalCount
+                count: map.get( parsed.name )
             });
         });
     });
@@ -99,9 +108,7 @@ app.get('/auth/facebook/callback',
 );
 
 app.get('/login_success', function(req, res){
-    _globalCount += 1;
-    res.send( 'name : ' + _globalName + ' count : ' + _globalCount );
-    console.log('Very weird');
+    res.send( 'name : ' + _globalCurrentName + ' count : ' + map.get(_globalCurrentName) );
 });
 
 app.get('/logout', function(req, res){
