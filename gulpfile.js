@@ -6,6 +6,9 @@ var runSequence = require('run-sequence');
 var jasmine = require('gulp-jasmine');
 var connect = require('gulp-connect');
 var opn = require('opn');
+var sourcemaps = require("gulp-sourcemaps");
+var babel = require("gulp-babel");
+var concat = require("gulp-concat");
 // var babel = require("gulp-babel");
 
 

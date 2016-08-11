@@ -1,20 +1,23 @@
-'use strict';
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _FacebookButton = require('./FacebookButton');
-
-var _FacebookButton2 = _interopRequireDefault(_FacebookButton);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_react2.default.render(_react2.default.createElement(_FacebookButton2.default, { fb: FB }), document.getElementById('facebook-login'));
-
-// import React from 'react';
+import React from 'react';
 // import FacebookButton from './FacebookButton';
 
-// React.render(
-//    <FacebookButton fb={FB} />,
-//    document.getElementById('facebook-login'));
+import ReactDOM from 'react-dom'
+import { createStore } from 'redux'
+import Counter from '../shared/components/Counter'
+import counter from '../shared/reducers'
+
+const store = createStore(counter)
+const rootEl = document.getElementById('root')
+
+function render() {
+	ReactDOM.render(
+
+	  <Counter
+	    value={store.getState()}
+	    onIncrement={() => store.dispatch({ type: 'INCREMENT' })} />,
+	  rootEl
+	)
+}
+
+render()
+store.subscribe(render)
