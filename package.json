@@ -1,0 +1,25 @@
+{
+  "name": "firstapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "s",
+  "dependencies": {
+    "browserify": "^13.1.0",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "eventemitter": "^0.3.3",
+    "gulp-jasmine": "^2.4.0",
+    "opn": "^4.0.2",
+    "express": "^4.14.0",
+    "run-sequence": "^1.2.2",
+    "react": "^15.3.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
