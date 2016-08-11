@@ -1,0 +1,35 @@
+{
+  "name": "codelab4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sv-bootcamp/example-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sv-bootcamp/example-project/issues"
+  },
+  "homepage": "https://github.com/sv-bootcamp/example-project#readme",
+  "dependencies": {
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "eventemitter": "^0.3.3",
+    "gulp-connect": "^5.0.0",
+    "gulp-jasmine": "^2.4.0",
+    "opn": "^4.0.2",
+    "react": "^15.3.0",
+    "run-sequence": "^1.2.2",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2"
+  }
+}
