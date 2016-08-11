@@ -6,6 +6,9 @@ var runSequence = require('run-sequence');
 var jasmine = require('gulp-jasmine');
 var connect = require('gulp-connect');
 var opn = require('opn');
+var sourcemaps = require("gulp-sourcemaps");
+var babel = require("gulp-babel");
+var concat = require("gulp-concat");
 
 gulp.task('build', function() {
    return browserify({
@@ -21,14 +24,14 @@ gulp.task('build', function() {
 
 gulp.task('startserver', function() {
     return connect.server({
-      port: 8080,
+      port: 3000,
       root: './src/client/',
       fallback: 'index.html'
     });
 });
 
 gulp.task('openbrowser', function() {
-    return opn('http://stark-shelf-48078.herokuapp.com');
+    return opn('http://localhost:3000');
 });
 
 gulp.task('default', function() {

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Facebook Login JavaScript Example</title>
-<meta charset="UTF-8">
-</head>
+  <head>
+    <title>Facebook Login JavaScript Example</title>
+    <meta charset="UTF-8">
+  </head>
 <body>
 <script>
   // This is called with the results from from FB.getLoginStatus().
@@ -15,7 +15,6 @@
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
-      // Logged into your app and Facebook.
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -39,12 +38,12 @@
   }
 
   window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '285492325147485',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.7' // use graph api version 2.5
+    FB.init({
+      appId      : '1081171635271316',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.5' // use graph api version 2.5
   });
 
   // Now that we've initialized the JavaScript SDK, we call 
@@ -84,22 +83,19 @@
         'Thanks for logging in, ' + response.name + '!';
     });
   }
+
 </script>
 
-<!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
--->
-
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState(); " auto_logout_link="true">
 </fb:login-button>
+
+<p id="count"></p>
 
 <div id="status">
 </div>
 
 <div id="root">
-    </div>
+</div>
 
 </body>
 </html>

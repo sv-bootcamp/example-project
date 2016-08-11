@@ -1,23 +1,25 @@
-'use strict';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore } from 'redux'
+import Counter from '../shared/components/Counter'
+import counter from '../shared/reducers'
 
-var _react = require('react');
+const store = createStore(counter)
+const rootEl = document.getElementById('root')
 
-var _react2 = _interopRequireDefault(_react);
+store.subscribe(render);
 
-var _FacebookButton = require('./FacebookButton');
+document.addEventListener('click', ()=> {
+     store.dispatch({type : 'VISIT'})
+})
 
-var _FacebookButton2 = _interopRequireDefault(_FacebookButton);
+const render = () => {
+     document.body.innerText = store.getState();
+}
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+store.dispatch(() => {
+     cosnole.log(store.getState())
+})
 
-var HelloWorld = _react2.default.createClass({
-  displayName: 'HelloWorld',
-
-  render: function render() {
-    return _react2.default.createElement(_FacebookButton2.default, { fb: FB });
-  }
-});
-
-setInterval(function () {
-  ReactDOM.render(_react2.default.createElement(HelloWorld, { date: new Date() }), document.getElementById('fb-login-button'));
-}, 500);
+render()
+store.subscribe(render)
