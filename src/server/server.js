@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import passport from 'passport';
 import fbPassport from 'passport-facebook';
 import UserController from './controllers/user';
-import AuthFacebook from './routes/auth-facebook';
+import AuthFacebook from './routes/user';
 
 const FacebookPassport = fbPassport.Strategy;
 

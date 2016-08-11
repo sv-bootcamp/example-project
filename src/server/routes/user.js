@@ -4,6 +4,7 @@ import UserController from './../controllers/user';
 
 const router = express.Router();
 
+const userController = new UserController();
 
 router.get('/', passport.authenticate('facebook'));
 router.get('/callback',
@@ -13,25 +14,11 @@ router.get('/callback',
 	})
 );
 
-router.get('/login_success', function(req, res){
-
-	var userController = new UserController();
-	userController.updateCount(req.user.id);
-
-	const count = userController.getCount(req.user.id);
-
-	var user = {
-		displayName : req.user.displayName,
-		count : count,
-	};
-
-	res.render('login-success',user);
-
-});
+router.get('/login_success', userController.updateUser);
 
 router.get('/logout', function(req, res){
 	req.logout();
 	res.redirect('/');
 });
 
-module.exports = router;
+export default router;

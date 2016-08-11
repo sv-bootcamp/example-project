@@ -14,16 +14,18 @@ class User{
 		return instance;
 	}
 
-	getById(userId) {
-		return this.users[userId];
+	getById(id, finalCallback) {
+
+		finalCallback(this.users[id]);
+
 	}
 
-	updateById(userId) {
+	update(user, finalCallback) {
 		
-		if(!this.users.hasOwnProperty(userId)){ this.users[userId] = 1;}
-		else {this.users[userId]++;}
-
-		return this.users[userId];
+		this.users[user.id] = user;
+		
+		finalCallback(this.users[user.id]);
+	
 	}
 }
 
