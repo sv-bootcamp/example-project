@@ -20,8 +20,8 @@ class User{
 
 	updateById(userId) {
 		
-		if(this.users[userId]) this.users[userId] = 0;
-		else this.users[userId]++;
+		if(!this.users.hasOwnProperty(userId)){ this.users[userId] = 1;}
+		else {this.users[userId]++;}
 
 		return this.users[userId];
 	}
