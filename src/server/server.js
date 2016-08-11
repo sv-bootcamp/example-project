@@ -1,12 +1,14 @@
 var express = require('express');
 var path = require('path');
+var session = require('express-session');
+var 
 var passport = require('passport');
 var FacebookPassport = require('passport-facebook').Strategy;
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'src/client/views'));
+app.set('views', path.join(__dirname, './../src/client/views'));
 app.set('view engine', 'ejs');
 
 app.use(passport.initialize());
@@ -15,9 +17,11 @@ app.use(passport.session());
 app.listen(3000, function(){
 	console.log('listening on port 3000');
 });
+
 app.get('/',function(req,res){
 	res.render('auth-facebook');
 });
+
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
 	passport.authenticate('facebook', {
@@ -25,9 +29,11 @@ app.get('/auth/facebook/callback',
 		failureRedirect : 'login_fail'
 	})
 );
+
 app.get('/login_success', function(req, res){
-	res.send(req.user);
+	res.send(req);
 });
+
 app.get('/logout', function(req, res){
 	req.logout();
 	res.redirect('/');
