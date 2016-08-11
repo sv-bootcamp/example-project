@@ -1,9 +1,10 @@
+
+
 export default function counter(state = 0, action) {
+	//action.username
   switch (action.type) {
-    case 'INCREMENT':
-      return state + 1
-    case 'DECREMENT':
-      return state - 1
+    case 'ADD_VISIT_COUNT':
+      return state + 1    
     default:
       return state
   }
