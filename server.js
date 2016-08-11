@@ -43,6 +43,6 @@ app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/src/client/index.html')
 });
 
-var server = app.listen(4015, function() {
+var server = app.listen(process.env.PORT || 4015, function() {
 	console.log('listening on port %d', server.address().port);
 });
