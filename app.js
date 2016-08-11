@@ -3,10 +3,77 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./src/server/index');
+var http = require('http');
+var https = require('https');
+var Promise = require('promise');
+var request = require('request');
+var passport = require('passport')
+    , FacebookStrategy = require('passport-facebook').Strategy;
 
-// var orders = require('./routes/orders');
+// serialize
+// 인증후 사용자 정보를 세션에 저장
+passport.serializeUser(function(user, done) {
+    console.log('serialize');
+    done(null, user);
+});
+
+
+// deserialize
+// 인증후, 사용자 정보를 세션에서 읽어서 request.user에 저장
+passport.deserializeUser(function(user, done) {
+    console.log('deserialize');
+    done(null, user);
+});
+
+passport.use(new FacebookStrategy({
+        clientID: '111863319260923',
+        clientSecret: 'e4da71308d233429efe61293f94666ee',
+        callbackURL: 'http://localhost:3000/auth/facebook/callback'
+    },
+    function(accessToken, refreshToken, profile, done) {
+        https.get({
+            host: 'graph.facebook.com',
+            path: '/me?access_token=' + accessToken //accessToken
+        }, function(response) {
+            // Continuously update stream with data
+            var body = '';
+            response.on('data', function (d) {
+                body += d;
+            });
+            response.on('end', function(  ) {
+                // Data reception is done, do whatever with it!
+                var parsed = JSON.parse(body);
+                _globalName = parsed.name;
+
+                done(null,profile);
+            });
+        });
+    }
+));
 
 var app = express();
+var _globalCount = 0;
+var _globalName = '';
+
+app.get('/getInfo', function (req, res) {
+    https.get({
+        host: 'graph.facebook.com',
+        path: '/me?access_token=' + req.query.accessToken //accessToken
+    }, function(response) {
+        // Continuously update stream with data
+        var body = '';
+        response.on('end', function() {
+            // Data reception is done, do whatever with it!
+            var parsed = JSON.parse(body);
+            console.log('on');
+
+            res.send({
+                name: parsed.name,
+                count: _globalCount
+            });
+        });
+    });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,36 +86,24 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use(passport.initialize());
+app.use(passport.session());
 
-// catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-//     var err = new Error('Not Found');
-//     err.status = 404;
-//     next(err);
-// });
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', { successRedirect: '/login_success',
+        failureRedirect: '/login_fail' })
+);
 
-// error handlers
+app.get('/login_success', function(req, res){
+    _globalCount += 1;
+    res.send( 'name : ' + _globalName + ' count : ' + _globalCount );
+    console.log('Very weird');
+});
 
-// // development error handler
-// // will print stacktrace
-// if (app.get('env') === 'development') {
-//     app.use(function (err, req, res, next) {
-//         res.status(err.status || 500);
-//         res.render('error', {
-//             message: err.message,
-//             error: err
-//         });
-//     });
-// }
-//
-// // production error handler
-// // no stacktraces leaked to user
-// app.use(function (err, req, res, next) {
-//     res.status(err.status || 500);
-//     res.render('error', {
-//         message: err.message,
-//         error: {}
-//     });
-// });
+app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+});
 
 module.exports = app;
