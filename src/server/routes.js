@@ -40,6 +40,10 @@ router.get('/*', (req, res, next) => {
 
       return res.send(page);
     }
+    //Logger.info(route);
+    //Logger.info(err);
+    Logger.info(renderProps);
+
     // TODO: correctly render errors
     Logger.info(`[ReactRouter][Not Found], ${req.url}`);
     const error404 = new Error('Not Found');

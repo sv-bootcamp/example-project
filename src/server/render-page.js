@@ -7,6 +7,7 @@ export default (html, initialState) => {
   <head>
     <link rel="shortcut icon" href="/static/favicon.ico">
     <title>${config.name}</title>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
   </head>
   <body>
     <div id="app-container">${html}</div>
