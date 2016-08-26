@@ -42,3 +42,7 @@ jspm_packages
 dist-client
 dist-server
 dist-test
+/.idea/
+.idea/
+example-project.iml
+/config/local.json
