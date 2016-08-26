@@ -33,14 +33,12 @@
     "express": "^4.13.4",
     "fb": "^1.1.1",
     "gulp": "^3.9.1",
-    "gulp-jasmine": "^2.4.0",
     "hjson": "^2.0.5",
     "iced-coffee-script": "^108.0.11",
     "memory-cache": "^0.1.6",
     "moment": "^2.14.1",
     "morgan": "~1.7.0",
     "node-simple-logger": "0.0.1",
-    "opn": "^4.0.2",
     "properties": "^1.2.1",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
@@ -51,7 +49,6 @@
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "request": "^2.74.0",
-    "run-sequence": "^1.2.2",
     "serve-favicon": "~2.3.0",
     "sinon": "^1.17.5",
     "source-map-support": "^0.4.2",
@@ -96,4 +93,3 @@
     "node": "6.4.0"
   }
 }
-
